@@ -1,18 +1,25 @@
 package com.automationmentoring.homework2;
 
 public class StatisticalInformation {
+
     public static void main(String[] args) {
-        int[] data = {206, 430, 73, 30, 293, 322, 42, 36, 447, 229, 30};
+        int[] arr = {206, 430, 73, 30, 293, 322, 42, 36, 447, 229, 30};
+        System.out.println("arithmetic mean of an array is " + mean(arr));
+        System.out.println("median of an array is " + median(arr));
+        System.out.println("mode of an array is " + mode(arr));
+        System.out.println("standard deviation of an array is " + stdDev(arr));
+    }
+
+    private static double mean(int[] data) {
         int sum = 0;
-        int median = 0;
-        double mean = 0;
         for (int i = 0; i < data.length; i++) {
             sum += data[i];
         }
-        mean = sum/data.length;
-        System.out.println("arithmetic mean of an array is " + mean);
+        return sum / data.length;
+    }
 
-        int tmp = 0;
+    private static int median(int[] data) {
+        int tmp;
         for (int i = 0; i < data.length-1; i++) {
             for (int j = i + 1; j < data.length; j++) {
                 if (data[i] > data[j]) {
@@ -23,13 +30,14 @@ public class StatisticalInformation {
             }
         }
         if (data.length % 2 == 0) {
-            median = (data[data.length/2] + data[data.length/2 - 1])/2;
+            return (data[data.length/2] + data[data.length/2 - 1])/2;
         }
         else {
-            median = data[data.length / 2];
+           return data[data.length / 2];
         }
-        System.out.println("median of an array is " + median);
+    }
 
+    private static int mode(int[] data){
         int maxCount = 0;
         int maxValue = 0;
         for(int i = 0; i<data.length; i++) {
@@ -42,16 +50,17 @@ public class StatisticalInformation {
                 maxValue = data[i];
             }
         }
-        System.out.println("mode of an array is " + maxValue);
-
-        double stDev = 0;
-        double sum1 = 0;
-        for(int i =0; i<data.length; i++){
-            double diff = data[i] - mean;
-            double square = Math.pow(diff,2);
-            sum1 += square;
-        }
-        stDev = Math.sqrt(sum1/(data.length-1));
-        System.out.println("standard deviation of an array is " + stDev);
+        return maxValue;
     }
+
+    private static double stdDev(int[] data) {
+        double sum = 0;
+        for (int i = 0; i < data.length; i++) {
+            double diff = data[i] - mean(data);
+            double square = Math.pow(diff, 2);
+            sum += square;
+        }
+        return Math.sqrt(sum / (data.length - 1));
+    }
+
 }
