@@ -8,21 +8,21 @@ public class Deck {
     private int backwardIndex;
 
     public Deck() {
-        cards = new Card[Card.ranks.length*Card.suits.length];
+        cards = new Card[Card.ranks.length * Card.suits.length];
         int index = 0;
         for (int suit = 0; suit < Card.suits.length; suit++) {
             for (int rank = 0; rank < Card.ranks.length; rank++) {
                 cards[index++] = new Card(rank, suit);
             }
         }
-        backwardIndex = cards.length-1;
+        backwardIndex = cards.length - 1;
     }
 
     public Card getCard() {
-        return cards [currentIndex++];
+        return cards[currentIndex++];
     }
 
-    boolean hasNext(){
+    boolean hasNext() {
         return currentIndex < cards.length;
     }
 
@@ -30,7 +30,7 @@ public class Deck {
         return cards[backwardIndex--];
     }
 
-    boolean hasPrevious(){
+    boolean hasPrevious() {
         return backwardIndex > -1;
     }
 }
