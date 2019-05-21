@@ -1,6 +1,5 @@
 package com.automationmentoring.homework4.SecondTask;
 
-import java.math.BigDecimal;
 
 public class Logger implements Observer {
     public void update(BankAccount bankAccount, double amount, Action action) {

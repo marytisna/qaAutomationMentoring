@@ -11,7 +11,7 @@ public class App {
         credit.addObserver(logger);
         debit.addObserver(logger);
 
-        credit.add(50);
+        credit.add(-10);
         credit.withdraw(20);
         credit.calculatePaymentFee(20);
 

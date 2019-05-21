@@ -1,21 +1,28 @@
 package com.automationmentoring.homework4.SecondTask;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BankAccount extends Observable {
-    public void withdraw(double amount) {
-        notifyObservers(this, amount, Action.WITHDRAW);
-    }
+    private List<Observer> observers = new ArrayList<>();
 
-    public void add(double amount) {
-        notifyObservers(this, amount, Action.ADD);
-    }
+    public abstract void withdraw(double amount);
 
-    public void calculatePaymentFee(double amount) {
-        notifyObservers(this, amount, Action.CALCULATE);
-    }
+    public abstract void add(double amount);
+
+    public abstract void calculatePaymentFee(double amount);
 
     public abstract double getCurrentBalance();
+
+    @Override
+    public void notifyObservers(BankAccount bankAccount, double amount, Action action){
+        observers.forEach(obs -> obs.update(bankAccount, amount, action));
+    }
+
+    @Override
+    public void addObserver(Observer obs) {
+        observers.add(obs);
+    }
 
 
 }
